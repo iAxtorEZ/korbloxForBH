@@ -1,0 +1,51 @@
+local Humanoid = game:GetService("Players").LocalPlayer.Character:FindFirstChild("Humanoid")
+
+local AppliedDesc = Humanoid:GetAppliedDescription()
+
+local LeftLeg = AppliedDesc.LeftLeg
+local RightLeg = AppliedDesc.RightLeg
+local RightArm = AppliedDesc.RightArm
+local LeftArm = AppliedDesc.LeftArm
+local Torso = AppliedDesc.Torso
+local Head = AppliedDesc.Head
+
+local function set(args)
+    game:GetService("ReplicatedStorage"):WaitForChild("RE"):WaitForChild("1Avata1rOrigina1l"):FireServer(unpack(args))
+end
+
+local function get(argument)
+    if argument == "right" then
+        if _G.right == true then
+            return 139607718
+        else
+            return RightLeg
+        end
+    elseif argument == "left" then
+        if _G.left == true then
+            return 139607673
+        else
+            return LeftLeg
+        end
+    elseif argument == "head" then
+        if _G.head == true then
+            return 134082579
+        else
+            return Head
+        end
+    end
+end
+
+local args = {
+    [1] = "CharacterChange",
+    [2] = {
+        [1] = Torso, -- Torso
+        [2] = RightArm, -- Right Arm
+        [3] = LeftArm, -- Left Arm
+        [4] = get("right"), -- Right Leg
+        [5] = get("left"), -- Left Leg
+        [6] = get("head") -- Head
+    },
+    [3] = "AllBlocky"
+}
+
+set(args)
